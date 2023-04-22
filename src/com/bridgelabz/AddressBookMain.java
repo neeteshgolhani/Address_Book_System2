@@ -1,11 +1,8 @@
 package com.bridgelabz;
-
 import java.util.Scanner;
-
 public class AddressBookMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         // prompt the user for input
         System.out.println("Enter first name:");
         String firstName = scanner.nextLine();
@@ -37,5 +34,15 @@ public class AddressBookMain {
         // print the new contact
         System.out.println("New contact created:");
         System.out.println(newContact);
+        // create a new address book
+        AddressBook addressBook = new AddressBook();
+        // add the new contact to the address book
+        addressBook.addContact(newContact);
+
+        // print out the current list of contacts in the address book
+        System.out.println("Current contacts in address book:");
+        for (Contact contact : addressBook.getContacts()) {
+            System.out.println(contact);
+        }
     }
 }
