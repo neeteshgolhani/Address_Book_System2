@@ -1,5 +1,6 @@
 package com.bridgelabz;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -93,6 +94,23 @@ public class AddressBook {
 
         // Return the city dictionary
         return cityDictionary;
+    }
+    // Method to get the count of contact persons by city
+    public Map<String, Long> getCountByCity() {
+        // Group the contact persons by city and count the number of persons in each city
+        Map<String, Long> countByCity = contactDetails.stream()
+                .collect(Collectors.groupingBy(Contacts::getCity, Collectors.counting()));
+
+        return countByCity;
+    }
+
+    // Method to get the count of contact persons by state
+    public Map<String, Long> getCountByState() {
+        // Group the contact persons by state and count the number of persons in each state
+        Map<String, Long> countByState = contactDetails.stream()
+                .collect(Collectors.groupingBy(Contacts::getState, Collectors.counting()));
+
+        return countByState;
     }
 
     // Method to create the state dictionary

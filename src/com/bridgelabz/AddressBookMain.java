@@ -49,5 +49,34 @@ public class AddressBookMain {
             // Get the list of contacts for the current state
             List<Contacts> contacts = entry.getValue();
         }
+        // Get the count of contact persons by city
+        Map<String, Long> countByCity = addressBook1.getCountByCity();
+        countByCity.putAll(addressBook2.getCountByCity());
+
+        System.out.println("Count by City:");
+        // Iterate over the countByCity map entries
+        for (Map.Entry<String, Long> entry : countByCity.entrySet()) {
+            // Get the city key and count value
+            String city = entry.getKey();
+            Long count = entry.getValue();
+
+            // Display the city and count
+            System.out.println("City: " + city + ", Count: " + count);
+        }
+
+        // Get the count of contact persons by state
+        Map<String, Long> countByState = addressBook1.getCountByState();
+        countByState.putAll(addressBook2.getCountByState());
+
+        System.out.println("Count by State:");
+        // Iterate over the countByState map entries
+        for (Map.Entry<String, Long> entry : countByState.entrySet()) {
+            // Get the state key and count value
+            String state = entry.getKey();
+            Long count = entry.getValue();
+
+            // Display the state and count
+            System.out.println("State: " + state + ", Count: " + count);
+        }
     }
 }
