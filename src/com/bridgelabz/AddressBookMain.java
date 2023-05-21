@@ -9,7 +9,15 @@ public class AddressBookMain {
         System.out.println("Enter First Name for which you want to modify info: ");
         String fName = sc.nextLine();
         addressOfPerson1.editDetails(fName);
+        System.out.println("Enter First Name for which you want to delete the person: ");
+        String firstNameToDelete = sc.nextLine(); // Read the first name to delete from user input
+        addressOfPerson1.deleteDetails(firstNameToDelete); // Delete the person based on the first name
+
+        System.out.println("Updated Contacts: ");
+        addressOfPerson1.displayContacts(); // Display the updated contacts
+
         System.out.println("Updated Details: ");
         addressOfPerson1.displayContacts();
     }
 }
+

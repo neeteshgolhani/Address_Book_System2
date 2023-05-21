@@ -81,4 +81,18 @@ public class AddressBook {
             }
         }
     }
+    public void deleteDetails(String searchFirstName) {
+        boolean found = false; // Flag to track if the person was found
+        for (Contacts contact : contactDetails) { // Iterate through the contact details
+            if (contact.getFirstName().equals(searchFirstName)) { // Check if the first name matches the search name
+                contactDetails.remove(contact); // Remove the contact from the list
+                found = true; // Set the flag to true
+                System.out.println("Person " + searchFirstName + " was deleted."); // Display deletion message
+                break; // Exit the loop since the person was found and deleted
+            }
+        }
+        if (!found) {
+            System.out.println("Person " + searchFirstName + " was not found."); // Display not found message
+        }
+    }
 }
