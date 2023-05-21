@@ -71,4 +71,52 @@ public class AddressBook {
     public void displayContacts() {
         System.out.println(contactDetails);
     }
+    // Method to create the city dictionary
+    public HashMap<String, List<Contacts>> createCityDictionary() {
+        // Create a new HashMap to store the city dictionary
+        HashMap<String, List<Contacts>> cityDictionary = new HashMap<>();
+
+        // Iterate over the contactDetails list
+        for (Contacts contact : contactDetails) {
+            // Get the city of the contact
+            String city = contact.getCity();
+
+            // Get the list of contacts for the current city
+            List<Contacts> cityContacts = cityDictionary.getOrDefault(city, new ArrayList<>());
+
+            // Add the current contact to the cityContacts list
+            cityContacts.add(contact);
+
+            // Update the city dictionary with the updated cityContacts list
+            cityDictionary.put(city, cityContacts);
+        }
+
+        // Return the city dictionary
+        return cityDictionary;
+    }
+
+    // Method to create the state dictionary
+    public HashMap<String, List<Contacts>> createStateDictionary() {
+        // Create a new HashMap to store the state dictionary
+        HashMap<String, List<Contacts>> stateDictionary = new HashMap<>();
+
+        // Iterate over the contactDetails list
+        for (Contacts contact : contactDetails) {
+            // Get the state of the contact
+            String state = contact.getState();
+
+            // Get the list of contacts for the current state
+            List<Contacts> stateContacts = stateDictionary.getOrDefault(state, new ArrayList<>());
+
+            // Add the current contact to the stateContacts list
+            stateContacts.add(contact);
+
+            // Update the state dictionary with the updated stateContacts list
+            stateDictionary.put(state, stateContacts);
+        }
+
+        // Return the state dictionary
+        return stateDictionary;
+    }
+
 }
