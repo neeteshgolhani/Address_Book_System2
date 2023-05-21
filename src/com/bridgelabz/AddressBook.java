@@ -1,98 +1,47 @@
 package com.bridgelabz;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
-    ArrayList<Contacts> contactDetails = new ArrayList();
-    Scanner sc = new Scanner(System.in);
+    List<Contacts> contactDetails = new ArrayList<>(); // List to store contact details
+    Scanner sc = new Scanner(System.in); // Scanner for user input
 
     public void addDetails() {
-        Contacts info = new Contacts();
-        System.out.println("Enter first name: ");
-        info.setFirstName(sc.nextLine());
-        System.out.println("Enter last name: ");
-        info.setLastName(sc.nextLine());
-        System.out.println("Enter address: ");
-        info.setAddress(sc.nextLine());
-        System.out.println("Enter city name: ");
-        info.setCity(sc.nextLine());
-        System.out.println("Enter state name: ");
-        info.setState(sc.nextLine());
-        System.out.println("Enter zip code: ");
-        info.setZipCode(sc.nextLine());
-        System.out.println("Enter contact no.: ");
-        info.setContactNo(sc.nextLine());
-        System.out.println("Enter email: ");
-        info.setEmail(sc.nextLine());
-        contactDetails.add(info);
+        System.out.println("Enter the number of persons you want to add: ");
+        int count = sc.nextInt();
+        sc.nextLine(); // Consume the newline character
+
+        for (int i = 0; i < count; i++) {
+            Contacts info = new Contacts();
+            System.out.println("Enter first name: "); // Prompt for first name
+            info.setFirstName(sc.nextLine()); // Set the first name of the contact
+            System.out.println("Enter last name: "); // Prompt for last name
+            info.setLastName(sc.nextLine()); // Set the last name of the contact
+            System.out.println("Enter address: "); // Prompt for address
+            info.setAddress(sc.nextLine()); // Set the address of the contact
+            System.out.println("Enter city name: "); // Prompt for city name
+            info.setCity(sc.nextLine()); // Set the city of the contact
+            System.out.println("Enter state name: "); // Prompt for state name
+            info.setState(sc.nextLine()); // Set the state of the contact
+            System.out.println("Enter zip code: "); // Prompt for zip code
+            info.setZipCode(sc.nextLine()); // Set the zip code of the contact
+            System.out.println("Enter contact no.: "); // Prompt for contact number
+            info.setContactNo(sc.nextLine()); // Set the contact number of the contact
+            System.out.println("Enter email: "); // Prompt for email
+            info.setEmail(sc.nextLine()); // Set the email of the contact
+
+            contactDetails.add(info); // Add the contact details to the list
+            System.out.println("Person added to the address book.");
+            System.out.println("-----------------------------------");
+        }
     }
 
     public void displayContacts() {
-        System.out.println(contactDetails);
-    }
-
-    public void editDetails(String searchFirstName) {
         for (Contacts contact : contactDetails) {
-            System.out.println("First name: " + contact.getFirstName());
-            if (contact.getFirstName().equals(searchFirstName)) {
-                System.out.println("Enter the number to edit respective info: ");
-                System.out.println("1. First Name \n2. Last Name \n3. Address \n4. City " +
-                        "\n5. State \n6. Zip Code \n7. Contact No \n8. Email");
-                int index = sc.nextInt();
-                System.out.println("Enter value to update: ");
-                switch (index) {
-                    case 1:
-                        String updatedFirstName = sc.next();
-                        contact.setFirstName(updatedFirstName);
-                        break;
-                    case 2:
-                        String updatedLastName = sc.next();
-                        contact.setLastName(updatedLastName);
-                        break;
-                    case 3:
-                        String updatedAddress = sc.next();
-                        contact.setAddress(updatedAddress);
-                        break;
-                    case 4:
-                        String updatedCity = sc.next();
-                        contact.setCity(updatedCity);
-                        break;
-                    case 5:
-                        String updatedState = sc.next();
-                        contact.setState(updatedState);
-                        break;
-                    case 6:
-                        String updatedZipCode = sc.next();
-                        contact.setZipCode(updatedZipCode);
-                        break;
-                    case 7:
-                        String updatedContact = sc.next();
-                        contact.setContactNo(updatedContact);
-                        break;
-                    case 8:
-                        String updatedEmail = sc.next();
-                        contact.setEmail(updatedEmail);
-                        break;
-                    default:
-                        System.out.println("Invalid number!");
-                }
-            } else {
-                System.out.println("No record found!");
-            }
-        }
-    }
-    public void deleteDetails(String searchFirstName) {
-        boolean found = false; // Flag to track if the person was found
-        for (Contacts contact : contactDetails) { // Iterate through the contact details
-            if (contact.getFirstName().equals(searchFirstName)) { // Check if the first name matches the search name
-                contactDetails.remove(contact); // Remove the contact from the list
-                found = true; // Set the flag to true
-                System.out.println("Person " + searchFirstName + " was deleted."); // Display deletion message
-                break; // Exit the loop since the person was found and deleted
-            }
-        }
-        if (!found) {
-            System.out.println("Person " + searchFirstName + " was not found."); // Display not found message
+            System.out.println(contact);
+            System.out.println("-----------------------------------");
         }
     }
 }
+
