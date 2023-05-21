@@ -2,14 +2,18 @@ package com.bridgelabz;
 
 public class Person {
     private String name;
-    // Add other properties and methods as needed
+    private String city;
+    private String state;
+    private String zip;
 
-    public Person(String name) {
+    public Person(String name, String city, String state, String zip) {
         this.name = name;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
     }
 
     // Getters and setters for the properties
-
 
     public String getName() {
         return name;
@@ -19,8 +23,32 @@ public class Person {
         this.name = name;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
     @Override
     public String toString() {
-        return "Person [name=" + name + "]";
+        return "Person [name=" + name + ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
     }
 }

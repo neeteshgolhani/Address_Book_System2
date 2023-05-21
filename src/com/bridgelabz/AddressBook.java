@@ -2,6 +2,7 @@ package com.bridgelabz;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AddressBook {
@@ -15,11 +16,18 @@ public class AddressBook {
         entries.add(person);
     }
 
-    public void sortEntriesByName() {
-        Collections.sort(entries, (p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()));
+    public void sortEntriesByCity() {
+        Collections.sort(entries, Comparator.comparing(Person::getCity));
     }
 
+    public void sortEntriesByState() {
+        Collections.sort(entries, Comparator.comparing(Person::getState));
+    }
+
+    public void sortEntriesByZip() {
+        Collections.sort(entries, Comparator.comparing(Person::getZip));
+    }
     public void printEntries() {
-        entries.forEach(System.out::println);
+        entries.stream().forEach(System.out::println);
     }
 }
