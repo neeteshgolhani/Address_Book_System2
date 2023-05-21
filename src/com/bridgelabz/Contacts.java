@@ -2,6 +2,11 @@ package com.bridgelabz;
 
     public class Contacts {
         private String firstName, lastName, address, city, state, zipCode, contactNo, email;
+
+        public String getFullName() {
+            return firstName + " " + lastName;
+        }
+
         /*
          *  Getter Methods
          */
