@@ -1,34 +1,42 @@
 package com.bridgelabz;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 public class AddressBookMain {
     public static void main(String[] args) {
-        AddressBook addressBook = new AddressBook();
-        Scanner sc = new Scanner(System.in);
+        // Create multiple address books
+        AddressBook addressBook1 = new AddressBook("Address Book 1");
+        AddressBook addressBook2 = new AddressBook("Address Book 2");
 
-        while (true) {
-            System.out.println("Address Book Menu:");
-            System.out.println("1. Add Person");
-            System.out.println("2. Display Contacts");
-            System.out.println("3. Exit");
-            System.out.println("Enter your choice: ");
-            int choice = sc.nextInt();
-            sc.nextLine(); // Consume the newline character
+        // Add contacts to address books
+        addressBook1.addDetails();
+        addressBook2.addDetails();
 
-            switch (choice) {
-                case 1:
-                    addressBook.addDetails(); // Add a person to the address book
-                    break;
-                case 2:
-                    addressBook.displayContacts(); // Display the contacts in the address book
-                    break;
-                case 3:
-                    System.out.println("Exiting Address Book.");
-                    System.exit(0);
-                default:
-                    System.out.println("Invalid choice. Please try again.");
+        // Search by city
+        String searchCity = "City1";
+        List<Contacts> cityResults = new ArrayList<>();
+        cityResults.addAll(addressBook1.searchByCity(searchCity));
+        cityResults.addAll(addressBook2.searchByCity(searchCity));
+        if (cityResults.isEmpty()) {
+            System.out.println("No contacts found in the city: " + searchCity);
+        } else {
+            System.out.println("Contacts in the city: " + searchCity);
+            for (Contacts contact : cityResults) {
+                System.out.println(contact);
             }
+        }
 
-            System.out.println("-----------------------------------");
+        // Search by state
+        String searchState = "State1";
+        List<Contacts> stateResults = new ArrayList<>();
+        stateResults.addAll(addressBook1.searchByState(searchState));
+        stateResults.addAll(addressBook2.searchByState(searchState));
+        if (stateResults.isEmpty()) {
+            System.out.println("No contacts found in the state: " + searchState);
+        } else {
+            System.out.println("Contacts in the state: " + searchState);
+            for (Contacts contact : stateResults) {
+                System.out.println(contact);
+            }
         }
     }
 }

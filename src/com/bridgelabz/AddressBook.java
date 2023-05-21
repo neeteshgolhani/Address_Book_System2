@@ -1,8 +1,20 @@
 package com.bridgelabz;
 import java.util.*;
+
 public class AddressBook {
-    ArrayList<Contacts> contactDetails = new ArrayList<>();
-    Scanner sc = new Scanner(System.in);
+
+    private String addressBookName;
+    private ArrayList<Contacts> contactDetails = new ArrayList<>();
+    static ArrayList<AddressBook> addressBooks = new ArrayList<>();
+    private static Scanner sc = new Scanner(System.in);
+
+    public AddressBook(String s) {
+        this.addressBookName = addressBookName;
+    }
+
+    public String getAddressBookName() {
+        return addressBookName;
+    }
 
     public void addDetails() {
         Contacts info = new Contacts();
@@ -31,6 +43,30 @@ public class AddressBook {
             System.out.println("Person added successfully.");
         }
     }
+    public List<Contacts> searchByCity(String city) {
+        List<Contacts> results = new ArrayList<>();
+
+        for (Contacts contact : contactDetails) {
+            if (contact.getCity().equalsIgnoreCase(city)) {
+                results.add(contact);
+            }
+        }
+
+        return results;
+    }
+
+    public List<Contacts> searchByState(String state) {
+        List<Contacts> results = new ArrayList<>();
+
+        for (Contacts contact : contactDetails) {
+            if (contact.getState().equalsIgnoreCase(state)) {
+                results.add(contact);
+            }
+        }
+
+        return results;
+    }
+
 
     public void displayContacts() {
         System.out.println(contactDetails);
