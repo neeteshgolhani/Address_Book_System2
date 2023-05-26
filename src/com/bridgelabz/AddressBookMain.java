@@ -1,18 +1,51 @@
 package com.bridgelabz;
 
+import java.util.Scanner;
+
 public class AddressBookMain {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
-        // Add some person entries
-        addressBook.addPerson(new Person("Neetesh", "Jabalpur", "MP", "11111"));
-        addressBook.addPerson(new Person("Anya", "Lakhnadon", "CG", "22222"));
-        addressBook.addPerson(new Person("Raghav", "Bangelore", "KA", "33333"));
+        System.out.println("Enter the number of contacts to add: ");
+        int numContacts = sc.nextInt();
+        sc.nextLine(); // Consume the newline character
 
-        // Sort the entries by city, state, or zip
-        addressBook.sortEntriesByCity();
+        for (int i = 0; i < numContacts; i++) {
+            Contacts contact = new Contacts();
+            System.out.println("Enter first name: ");
+            contact.setFirstName(sc.nextLine());
+            System.out.println("Enter last name: ");
+            contact.setLastName(sc.nextLine());
+            System.out.println("Enter address: ");
+            contact.setAddress(sc.nextLine());
+            System.out.println("Enter city name: ");
+            contact.setCity(sc.nextLine());
+            System.out.println("Enter state name: ");
+            contact.setState(sc.nextLine());
+            System.out.println("Enter zip code: ");
+            contact.setZipCode(sc.nextLine());
+            System.out.println("Enter contact no.: ");
+            contact.setContactNo(sc.nextLine());
+            System.out.println("Enter email: ");
+            contact.setEmail(sc.nextLine());
+            addressBook.addDetails(contact);
+        }
 
-        // Print the sorted entries
-        addressBook.printEntries();
+        System.out.println("Contacts in the Address Book:");
+        addressBook.displayContacts();
+
+        // Write the Address Book to a file
+        String fileName = "addressbook.txt";
+        addressBook.writeToFile(fileName);
+
+        // Clear the existing contact details
+        addressBook.contactDetails.clear();
+
+        // Read the Address Book from the file
+        addressBook.readFromFile(fileName);
+
+        System.out.println("Contacts in the Address Book (after reading from file):");
+        addressBook.displayContacts();
     }
 }
