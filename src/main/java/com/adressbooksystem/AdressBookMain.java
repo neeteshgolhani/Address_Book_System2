@@ -4,48 +4,63 @@ import java.util.Scanner;
 
 public class AdressBookMain {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
-        System.out.println("Enter the number of contacts to add: ");
-        int numContacts = sc.nextInt();
-        sc.nextLine(); // Consume the newline character
+        System.out.println("Address Book Application");
+        System.out.println("------------------------");
 
-        for (int i = 0; i < numContacts; i++) {
-            Contacts contact = new Contacts();
-            System.out.println("Enter first name: ");
-            contact.setFirstName(sc.nextLine());
-            System.out.println("Enter last name: ");
-            contact.setLastName(sc.nextLine());
-            System.out.println("Enter address: ");
-            contact.setAddress(sc.nextLine());
-            System.out.println("Enter city name: ");
-            contact.setCity(sc.nextLine());
-            System.out.println("Enter state name: ");
-            contact.setState(sc.nextLine());
-            System.out.println("Enter zip code: ");
-            contact.setZipCode(sc.nextLine());
-            System.out.println("Enter contact no.: ");
-            contact.setContactNo(sc.nextLine());
-            System.out.println("Enter email: ");
-            contact.setEmail(sc.nextLine());
-            addressBook.addDetails(contact);
+        while (true) {
+            System.out.println("\nSelect an option:");
+            System.out.println("1. Add a person to the address book");
+            System.out.println("2. Display all contacts");
+            System.out.println("3. Write address book to JSON file");
+            System.out.println("4. Read address book from JSON file");
+            System.out.println("5. Exit");
+
+            int option = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (option) {
+                case 1:
+                    Contacts person = new Contacts();
+
+                    System.out.println("Enter first name: ");
+                    person.setFirstName(scanner.nextLine());
+
+                    System.out.println("Enter last name: ");
+                    person.setLastName(scanner.nextLine());
+
+                    // Enter other contact details as per your requirement
+
+                    addressBook.addDetails(person);
+                    System.out.println("Person added to the address book.");
+                    break;
+
+                case 2:
+                    System.out.println("Contacts in the address book:");
+                    addressBook.displayContacts();
+                    break;
+
+                case 3:
+                    System.out.println("Enter the name of the JSON file to write: ");
+                    String writeFileName = scanner.nextLine();
+                    addressBook.writeToJsonFile(writeFileName);
+                    break;
+
+                case 4:
+                    System.out.println("Enter the name of the JSON file to read: ");
+                    String readFileName = scanner.nextLine();
+                    addressBook.readFromJsonFile(readFileName);
+                    break;
+
+                case 5:
+                    System.out.println("Exiting the address book application.");
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
         }
-
-        System.out.println("Contacts in the Address Book:");
-        addressBook.displayContacts();
-
-        // Write the Address Book to a CSV file
-        String fileName = "addressbook.csv";
-        addressBook.writeToFile(fileName);
-
-        // Clear the existing contact details
-        addressBook.contactDetails.clear();
-
-        // Read the Address Book from the CSV file
-        addressBook.readFromFile(fileName);
-
-        System.out.println("Contacts in the Address Book (after reading from file):");
-        addressBook.displayContacts();
     }
 }
